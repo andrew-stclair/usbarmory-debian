@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y \
-    bc binfmt-support bzip2 fakeroot gcc gcc-arm-linux-gnueabihf \
+    bc binfmt-support bzip2 fakeroot file gcc gcc-arm-linux-gnueabihf \
     git gnupg make parted rsync qemu-user-static wget xz-utils zip \
     debootstrap sudo dirmngr bison flex libssl-dev kmod udev cpio \
     apt-utils
@@ -22,7 +22,7 @@ RUN su - $USER -c "gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 147C
 RUN su - $USER -c "gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 7721F63BD38B4796"
 
 # install golang
-ENV GOLANG_VERSION="1.20.2"
+ENV GOLANG_VERSION="1.22.1"
 
 RUN su - $USER -c "wget -O go.tgz https://go.dev/dl/go${GOLANG_VERSION}.linux-amd64.tar.gz"
 RUN su - $USER -c "wget -O go.tgz.asc https://go.dev/dl/go${GOLANG_VERSION}.linux-amd64.tar.gz.asc"
